@@ -1,0 +1,3 @@
+app_name = lion
+allow_warnings = false
+allow_unused = false
