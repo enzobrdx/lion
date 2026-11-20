@@ -8,7 +8,7 @@
   [poutre]
     type = GeneratedMeshGenerator
     dim = 1
-    nx = 100
+    nx = 1
     xmin = 0.0
     xmax = 20.0
   []
