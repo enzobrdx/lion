@@ -2,6 +2,7 @@ import easyvvuq as uq
 import chaospy as cp
 from pathlib import Path
 import matplotlib.pyplot as plt
+import pandas as pd
 
 params = {
     "E": {"type": "float", "default": 70e9},
@@ -62,6 +63,16 @@ results = campaign.analyse(qoi_cols=["fleche"])
 print("Moyenne de la flèche :", results.describe("fleche", "mean"))
 print("Écart-type :", results.describe("fleche", "std"))
 # print("Indices de Sobol (1er ordre) :", results.sobols_first()["fleche"])
+df_results = pd.DataFrame(
+    [
+        {
+            "Deflection mean": results.describe("fleche", "mean"),
+            "Standard deviation": results.describe("fleche", "std"),
+        }
+    ]
+)
+df_results.to_csv(script_dir / "UQ_prop_results.csv", index=False)
+
 
 results.plot_sobols_treemap("fleche", figsize=(10, 10))
 plt.axis("off")
